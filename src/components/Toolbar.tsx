@@ -11,7 +11,7 @@ export const Toolbar = (props: ToolbarProps) => {
   const { disablePreview = false, customLayout } = props;
 
   return (
-    <div className="react-mde-toolbar">
+    <div className="mde-header">
       {!disablePreview && <WritePreviewTabs />}
       {customLayout || <ToolbarLayout />}
     </div>

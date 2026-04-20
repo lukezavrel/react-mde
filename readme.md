@@ -1,4 +1,4 @@
-# 📝 @javier.alejandro.castro/react-mde
+# 📝 @lukaszavrel/react-mde
 
 A simple yet powerful and extensible **React Markdown Editor**. React-mde has no 3rd party dependencies.
 
@@ -6,7 +6,7 @@ A simple yet powerful and extensible **React Markdown Editor**. React-mde has no
 
 ## Installing
 
-    yarn add @javier.alejandro.castro/react-mde
+    yarn add @lukaszavrel/react-mde
 
 ## Markdown Preview
 
@@ -23,7 +23,7 @@ React-mde is a completely controlled component.
 
 ```jsx
 import React, { useState } from 'react';
-import { ReactMdeProvider, ReactMdeEditor } from '@javier.alejandro.castro/react-mde';
+import { ReactMdeProvider, ReactMdeEditor } from '@lukaszavrel/react-mde';
 import * as Showdown from 'showdown';
 
 const converter = new Showdown.Converter({

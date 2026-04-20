@@ -41,18 +41,10 @@
 
 /* src/styles.css */
 .mde-preview {
-  position: relative;
   flex-grow: 1;
-  overflow: hidden;
   min-height: 150px;
 }
 .mde-preview-content {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  overflow: scroll;
   padding: 10px;
 }
 .mde-preview-content p,
@@ -258,7 +250,7 @@ div.react-mde-textarea .textarea {
   vertical-align: top;
   overflow-y: auto;
 }
-div.react-mde-toolbar {
+div.mde-header {
   flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
@@ -267,11 +259,11 @@ div.react-mde-toolbar {
   border-radius: 2px 2px 0 0;
   background: #f9f9f9;
 }
-div.react-mde-toolbar ul.spacer {
+div.mde-header ul.spacer {
   display: flex;
   flex: 1;
 }
-div.react-mde-toolbar ul.maximizeRight {
+div.mde-header ul.maximizeRight {
   margin: 0;
   padding: 10px;
   list-style: none;
@@ -280,21 +272,21 @@ div.react-mde-toolbar ul.maximizeRight {
   flex-direction: row-reverse;
   flex-wrap: nowrap;
 }
-div.react-mde-toolbar-buttons {
+div.mde-tabs {
   display: flex;
   flex-direction: row;
 }
-div.react-mde-toolbar-buttons button {
+div.mde-tabs button {
   border-radius: 2px;
   margin: 6px 3px;
   background-color: transparent;
   border: 1px solid transparent;
   cursor: pointer;
 }
-div.react-mde-toolbar-buttons button:first-child {
+div.mde-tabs button:first-child {
   margin-left: 6px;
 }
-div.react-mde-toolbar-buttons button.selected {
+div.mde-tabs button.selected {
   border: 1px solid #c8ccd0;
 }
 .toolbarButton {
@@ -341,14 +333,14 @@ div.react-mde-toolbar-buttons button.selected {
   margin-bottom: 5px;
   white-space: nowrap;
 }
-ul.react-mde-toolbar-button-group {
+ul.mde-header-group {
   margin: 0;
   padding: 10px;
   list-style: none;
   display: flex;
   flex-wrap: nowrap;
 }
-li.react-mde-toolbar-dropdown button {
+li.mde-header-dropdown button {
   text-align: left;
   cursor: pointer;
   height: 22px;
@@ -358,12 +350,12 @@ li.react-mde-toolbar-dropdown button {
   background: none;
   color: #242729;
 }
-li.react-mde-toolbar-dropdown {
+li.mde-header-dropdown {
   display: inline-block;
   position: relative;
   margin: 0 4px;
 }
-ul.react-mde-toolbar-dropdown-items {
+ul.mde-header-dropdown-items {
   position: absolute;
   left: 0;
   top: 30px;
@@ -373,7 +365,7 @@ ul.react-mde-toolbar-dropdown-items {
   z-index: 2;
   transform: translateX(-9px);
 }
-ul.react-mde-toolbar-dropdown-items::before {
+ul.mde-header-dropdown-items::before {
   position: absolute;
   content: "";
   width: 0;
@@ -384,7 +376,7 @@ ul.react-mde-toolbar-dropdown-items::before {
   left: 3px;
   transform: translateX(50%);
 }
-ul.react-mde-toolbar-dropdown-items::after {
+ul.mde-header-dropdown-items::after {
   position: absolute;
   content: "";
   width: 0;

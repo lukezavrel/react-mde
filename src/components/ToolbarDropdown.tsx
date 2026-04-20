@@ -59,13 +59,13 @@ export const ToolbarDropdown = (props: ToolbarDropdownProps) => {
   };
 
   const dropdownItems = open ? (
-    <ul className="react-mde-toolbar-dropdown-items" ref={dropdown}>
+    <ul className="mde-header-dropdown-items" ref={dropdown}>
       {children}
     </ul>
   ) : null;
 
   return (
-    <li className="react-mde-toolbar-dropdown">
+    <li className="mde-header-dropdown">
       <button
         className="toolbarButton"
         type="button"

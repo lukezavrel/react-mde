@@ -331,6 +331,9 @@ export const TextArea = (props: TextAreaProps) => {
         readOnly={readOnly}
         value={value}
         data-testid="text-area"
+        style={{
+          minHeight: minHeight || 'auto',
+        }}
         {...textAreaProps}
         onChange={(event) => {
           textAreaProps?.onChange?.(event);

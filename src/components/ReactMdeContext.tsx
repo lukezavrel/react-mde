@@ -150,7 +150,7 @@ export const ReactMdeProvider = (props: ReactMdeProviderProps) => {
   useEffect(() => {
     adjustTextareaHeight();
   }, [textarea]);
-
+  console.log(l18n, props);
   return (
     <ReactMdeContext.Provider
       value={{

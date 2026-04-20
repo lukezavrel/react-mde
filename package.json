@@ -12,7 +12,7 @@
     "prepare": "npm run build && npm run build-docs",
     "test": "jest",
     "build": "tsc && cp src/styles.css lib/styles.css",
-    "build-docs": "esbuild --bundle ./docs/client.tsx --outfile=./docs/bundle.js --minify --charset=utf8",
+    "build-docs": "npx esbuild --bundle ./docs/client.tsx --outfile=./docs/bundle.js --minify --charset=utf8",
     "dev": "node esbuild.config.js -w",
     "cypress:open": "cypress open",
     "lint": "eslint 'src/**'"
@@ -21,6 +21,9 @@
     "type": "git",
     "url": "git+https://github.com/lukaszavrel/react-mde.git"
   },
+  "publishConfig": {
+		"registry": "https://nexus.ders.cool/repository/npm-releases/"
+	},
   "keywords": [
     "react",
     "component",

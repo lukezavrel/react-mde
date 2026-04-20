@@ -11,7 +11,7 @@ export const ToolbarButtonGroup = (props: ToolbarButtonGroupProps) => {
   const reactMde = useReactMde();
   return (
     <ul
-      className={`react-mde-toolbar-button-group ${className}`}
+      className={`mde-header-group ${className}`}
       style={{
         visibility: reactMde.selectedTab == 'preview' ? 'hidden' : 'visible',
       }}>

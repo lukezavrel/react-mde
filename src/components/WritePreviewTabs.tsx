@@ -3,8 +3,9 @@ import { useReactMde } from './ReactMdeContext.js';
 
 export const WritePreviewTabs = () => {
   const reactMde = useReactMde();
+  console.log(reactMde.l18n);
   return (
-    <div className="react-mde-toolbar-buttons">
+    <div className="mde-tabs">
       <button
         type="button"
         data-testid="write-button"

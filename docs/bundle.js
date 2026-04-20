@@ -26762,6 +26762,7 @@
     (0, import_react.useEffect)(() => {
       adjustTextareaHeight();
     }, [textarea]);
+    console.log(l18n, props);
     return /* @__PURE__ */ React2.createElement(ReactMdeContext.Provider, {
       value: {
         l18n,
@@ -26793,7 +26794,7 @@
     const {children, className = ""} = props;
     const reactMde = useReactMde();
     return /* @__PURE__ */ React3.createElement("ul", {
-      className: `react-mde-toolbar-button-group ${className}`,
+      className: `mde-header-group ${className}`,
       style: {
         visibility: reactMde.selectedTab == "preview" ? "hidden" : "visible"
       }
@@ -27165,6 +27166,9 @@
       readOnly,
       value,
       "data-testid": "text-area",
+      style: {
+        minHeight: minHeight || "auto"
+      },
       ...textAreaProps,
       onChange: (event) => {
         textAreaProps?.onChange?.(event);
@@ -27222,8 +27226,9 @@
   var React8 = __toModule(require_react());
   var WritePreviewTabs = () => {
     const reactMde = useReactMde();
+    console.log(reactMde.l18n);
     return /* @__PURE__ */ React8.createElement("div", {
-      className: "react-mde-toolbar-buttons"
+      className: "mde-tabs"
     }, /* @__PURE__ */ React8.createElement("button", {
       type: "button",
       "data-testid": "write-button",
@@ -27274,7 +27279,7 @@
   var Toolbar = (props) => {
     const {disablePreview = false, customLayout} = props;
     return /* @__PURE__ */ React11.createElement("div", {
-      className: "react-mde-toolbar"
+      className: "mde-header"
     }, !disablePreview && /* @__PURE__ */ React11.createElement(WritePreviewTabs, null), customLayout || /* @__PURE__ */ React11.createElement(ToolbarLayout_default, null));
   };
 
@@ -27842,7 +27847,7 @@ ${state1.selectedText}
     prepare: "npm run build && npm run build-docs",
     test: "jest",
     build: "tsc && cp src/styles.css lib/styles.css",
-    "build-docs": "esbuild --bundle ./docs/client.tsx --outfile=./docs/bundle.js --minify --charset=utf8",
+    "build-docs": "npx esbuild --bundle ./docs/client.tsx --outfile=./docs/bundle.js --minify --charset=utf8",
     dev: "node esbuild.config.js -w",
     "cypress:open": "cypress open",
     lint: "eslint 'src/**'"
@@ -27850,6 +27855,9 @@ ${state1.selectedText}
   var repository = {
     type: "git",
     url: "git+https://github.com/lukaszavrel/react-mde.git"
+  };
+  var publishConfig = {
+    registry: "https://nexus.ders.cool/repository/npm-releases/"
   };
   var keywords = [
     "react",
@@ -27908,6 +27916,7 @@ ${state1.selectedText}
     files,
     scripts,
     repository,
+    publishConfig,
     keywords,
     author,
     license,
