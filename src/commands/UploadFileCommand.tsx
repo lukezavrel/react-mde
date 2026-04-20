@@ -6,7 +6,7 @@ import readFileAsync from '../util/files.js';
 import { getBreaksNeededForEmptyLineBefore } from '../util/MarkdownUtil.js';
 
 function extractBlobs(items: DataTransferItemList): Array<File> {
-  const result = [];
+  const result: File[] = [];
   for (let i = 0; i < items.length; i += 1) {
     const item = items[i];
     if (item.kind === 'file') {
@@ -18,7 +18,7 @@ function extractBlobs(items: DataTransferItemList): Array<File> {
 }
 
 function fileListToBlobs(list: FileList): Array<File> {
-  const result = [];
+  const result: File[] = [];
   for (let i = 0; i < list.length; i += 1) {
     result.push(list[0]);
   }
@@ -164,6 +164,7 @@ export const UploadFileInputCommand = (props: {
         type="file"
         multiple
         onChange={async (event: React.ChangeEvent<HTMLInputElement>) => {
+          if (!event.target.files) return;
           let blobs: Array<File> = fileListToBlobs(event.target.files);
           if (
             handleBlobsUpload(blobs, getTextState(), l18n, textApi, uploadFile)

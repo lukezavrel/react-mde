@@ -36,7 +36,7 @@ type EventRegistration = {
 
 export type ReactMdeContextData = {
   l18n: any;
-  textarea: React.MutableRefObject<HTMLTextAreaElement>;
+  textarea: React.MutableRefObject<null | HTMLTextAreaElement>;
   preview: RefObj<HTMLDivElement>;
   selectedTab: Tab;
   setSelectedTab: Dispatch<SetStateAction<Tab>>;
@@ -109,7 +109,7 @@ export const ReactMdeProvider = (props: ReactMdeProviderProps) => {
   }, []);
 
   const handlePossibleEvent = (
-    e: React.KeyboardEvent<HTMLTextAreaElement>,
+    e: React.KeyboardEvent<HTMLTextAreaElement> | React.ClipboardEvent<HTMLTextAreaElement> | React.DragEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>,
   ): boolean => {
     for (let i = 0; i < eventHandlers.current.length; i += 1) {
       const { filter, handler } = eventHandlers.current[i];
@@ -130,7 +130,7 @@ export const ReactMdeProvider = (props: ReactMdeProviderProps) => {
     }
   }, [selectedTab]);
 
-  const [maximized, setMaximized] = useState(initialMaximized);
+  const [maximized, setMaximized] = useState(initialMaximized || false);
 
   const adjustTextareaHeight = () => {
     if (textarea.current && maximized) {
@@ -140,7 +140,9 @@ export const ReactMdeProvider = (props: ReactMdeProviderProps) => {
 
   useEffect(() => {
     if (onMaximizedChange) {
-      onMaximizedChange(maximized);
+      if (maximized !== undefined){
+        onMaximizedChange(maximized);
+      }
     }
     adjustTextareaHeight();
   }, [maximized, textarea]);

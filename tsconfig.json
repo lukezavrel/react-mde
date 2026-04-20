@@ -2,6 +2,7 @@
   "include": ["./src/**/*.tsx"],
   "exclude": ["**/__tests__/**", "cypress/**"],
   "compilerOptions": {
+    "rootDir": "./src",
     "outDir": "lib",
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "jsx": "react-jsx",

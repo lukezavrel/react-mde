@@ -1,11 +1,11 @@
-.react-mde-preview-container {
+.mde-preview {
   position: relative;
   flex-grow: 1;
   overflow: hidden;
   min-height: 150px;
 }
 
-.react-mde-preview {
+.mde-preview-content {
   position: absolute;
   top: 0;
   right: 0;
@@ -15,20 +15,20 @@
   padding: 10px;
 }
 
-.react-mde-preview p,
-.react-mde-preview blockquote,
-.react-mde-preview ul,
-.react-mde-preview ol,
-.react-mde-preview dl,
-.react-mde-preview table,
-.react-mde-preview pre {
+.mde-preview-content p,
+.mde-preview-content blockquote,
+.mde-preview-content ul,
+.mde-preview-content ol,
+.mde-preview-content dl,
+.mde-preview-content table,
+.mde-preview-content pre {
   margin-top: 0;
   margin-bottom: 16px;
 }
 
-.react-mde-preview h1,
-.react-mde-preview h2,
-.react-mde-preview h3 {
+.mde-preview-content h1,
+.mde-preview-content h2,
+.mde-preview-content h3 {
   margin-top: 24px;
   margin-bottom: 16px;
   font-weight: 600;
@@ -36,36 +36,36 @@
   border-bottom: 1px solid #eee;
   padding-bottom: 0.3em;
 }
-.react-mde-preview h1 {
+.mde-preview-content h1 {
   font-size: 1.6em;
 }
-.react-mde-preview h2 {
+.mde-preview-content h2 {
   font-size: 1.4em;
 }
-.react-mde-preview h3 {
+.mde-preview-content h3 {
   font-size: 1.2em;
 }
-.react-mde-preview ul,
-.react-mde-preview ol {
+.mde-preview-content ul,
+.mde-preview-content ol {
   padding-left: 2em;
 }
 
-.react-mde-preview blockquote {
+.mde-preview-content blockquote {
   margin-left: 0;
   padding: 0 1em;
   color: #777;
   border-left: 0.25em solid #ddd;
 }
 
-.react-mde-preview blockquote > :first-child {
+.mde-preview-content blockquote > :first-child {
   margin-top: 0;
 }
 
-.react-mde-preview blockquote > :last-child {
+.mde-preview-content blockquote > :last-child {
   margin-bottom: 0;
 }
 
-.react-mde-preview code {
+.mde-preview-content code {
   padding: 0.2em 0 0.2em 0;
   margin: 0;
   font-size: 90%;
@@ -73,13 +73,13 @@
   border-radius: 3px;
 }
 
-.react-mde-preview code::before,
-.react-mde-preview code::after {
+.mde-preview-content code::before,
+.mde-preview-content code::after {
   letter-spacing: -0.2em;
   content: \\00a0;
 }
 
-.react-mde-preview pre {
+.mde-preview-content pre {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -88,7 +88,7 @@
   border-radius: 3px;
 }
 
-.react-mde-preview pre code {
+.mde-preview-content pre code {
   display: inline;
   padding: 0;
   margin: 0;
@@ -99,12 +99,12 @@
   border: 0;
 }
 
-.react-mde-preview pre code::before,
-.react-mde-preview pre code::after {
+.mde-preview-content pre code::before,
+.mde-preview-content pre code::after {
   content: none;
 }
 
-.react-mde-preview pre > code {
+.mde-preview-content pre > code {
   padding: 0;
   margin: 0;
   font-size: 100%;
@@ -114,41 +114,41 @@
   border: 0;
 }
 
-.react-mde-preview pre a {
+.mde-preview-content pre a {
   color: #4078c0;
   text-decoration: none;
 }
 
-.react-mde-preview pre a:hover {
+.mde-preview-content pre a:hover {
   text-decoration: underline;
 }
 
-.react-mde-preview pre table {
+.mde-preview-content pre table {
   display: block;
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
 }
 
-.react-mde-preview pre table thead th {
+.mde-preview-content pre table thead th {
   font-weight: bold;
 }
 
-.react-mde-preview pre table th,
-.react-mde-preview pre table td {
+.mde-preview-content pre table th,
+.mde-preview-content pre table td {
   padding: 6px 13px;
   border: 1px solid #c8ccd0;
 }
 
-.react-mde-preview * > *:first-child {
+.mde-preview-content * > *:first-child {
   margin-top: 0 !important;
 }
 
-.react-mde-preview * > *:last-child {
+.mde-preview-content * > *:last-child {
   margin-bottom: 0 !important;
 }
 
-.react-mde-preview::after {
+.mde-preview-content::after {
   display: table;
   clear: both;
   content: '';

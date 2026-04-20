@@ -64,26 +64,28 @@ export default function insertText(
       } else {
         // Otherwise we need to find a nodes for start and end
         let offset = 0;
-        let startNode = null;
-        let endNode = null;
+        let startNode: Node | null = null;
+        let endNode: Node | null = null;
 
         // To make a change we just need a Range, not a Selection
         const range = document.createRange();
 
-        while (node && (startNode === null || endNode === null)) {
-          const nodeLength = node.nodeValue.length;
-
-          // if start of the selection falls into current node
-          if (start >= offset && start <= offset + nodeLength) {
-            range.setStart((startNode = node), start - offset);
+        while (node !== null && node !== undefined && (startNode === null || endNode === null)) {
+          const nodeLength = node.nodeValue?.length;
+          if (nodeLength !== undefined) {
+            // if start of the selection falls into current node
+            if (start !== undefined && start !== null && start >= offset && start <= offset + nodeLength) {
+              range.setStart((startNode = node), start - offset);
+            }
+  
+            // if end of the selection falls into current node
+            if (end !== undefined && end !== null && end >= offset && end <= offset + nodeLength) {
+              range.setEnd((endNode = node), end - offset);
+            }
+  
+            offset += nodeLength;
           }
 
-          // if end of the selection falls into current node
-          if (end >= offset && end <= offset + nodeLength) {
-            range.setEnd((endNode = node), end - offset);
-          }
-
-          offset += nodeLength;
           node = node.nextSibling;
         }
 
@@ -100,11 +102,12 @@ export default function insertText(
       // For the text input the only way is to replace the whole value :(
       const { value } = input;
       // eslint-disable-next-line no-param-reassign
-      input.value = value.slice(0, start) + text + value.slice(end);
+      input.value = value.slice(0, start ?? undefined) + text + value.slice(end ?? undefined);
     }
 
+    const safeStart = start ?? 0;
     // Correct the cursor position to be at the end of the insertion
-    input.setSelectionRange(start + text.length, start + text.length);
+    input.setSelectionRange(safeStart + text.length, safeStart + text.length);
 
     // Notify any possible listeners of the change
     const e = document.createEvent('UIEvent');

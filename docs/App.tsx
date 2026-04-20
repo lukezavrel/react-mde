@@ -61,6 +61,7 @@ const App = () => {
   };
 
   const handleMaximizedChange = (isMaximized: boolean) => {
+    if (isMaximized === undefined) return;
     setMaximized(isMaximized);
   };
 

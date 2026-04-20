@@ -33,14 +33,14 @@ export const Preview = (props: PreviewProps) => {
   if (typeof finalHtml === 'string') {
     content = (
       <div
-        className="react-mde-preview"
+        className="mde-preview-content"
         dangerouslySetInnerHTML={{ __html: finalHtml || '<p>&nbsp;</p>' }}
         ref={refObject}
       />
     );
   } else {
-    content = <div className="react-mde-preview">{finalHtml}</div>;
+    content = <div className="mde-preview-content">{finalHtml}</div>;
   }
 
-  return <div className="react-mde-preview-container" data-testid="react-mde-preview-container">{content}</div>;
+  return <div className="mde-preview" data-testid="mde-preview">{content}</div>;
 };

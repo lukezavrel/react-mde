@@ -27,7 +27,7 @@ describe('<MdePreview />', () => {
     const { getByTestId } = render(<Preview {...props} />);
 
     await waitFor(() => {
-      expect(getByTestId('react-mde-preview-container'));
+      expect(getByTestId('mde-preview'));
     });
   });
 

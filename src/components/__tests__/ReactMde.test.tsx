@@ -51,7 +51,7 @@ describe('<ReactMde />', () => {
     fireEvent.click(getByTestId('preview-button'));
 
     await waitFor(() => {
-      expect(getByTestId('react-mde-preview-container'));
+      expect(getByTestId('mde-preview'));
     });
   });
 });
