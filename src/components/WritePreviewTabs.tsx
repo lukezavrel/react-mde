@@ -3,7 +3,6 @@ import { useReactMde } from './ReactMdeContext.js';
 
 export const WritePreviewTabs = () => {
   const reactMde = useReactMde();
-  console.log(reactMde.l18n);
   return (
     <div className="mde-tabs">
       <button
