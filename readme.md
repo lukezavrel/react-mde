@@ -123,4 +123,4 @@ React-mde is [MIT licensed](https://github.com/jacargentina/react-mde/blob/maste
 
 ## Fork
 
-This started as a fork of https://github.com/andrerpena/react-mde to enable additional features
+This started as a fork of https://github.com/jacargentina/react-mde, which itself is a fork of https://github.com/andrerpena/react-mde to enable additional features
