@@ -58,8 +58,7 @@ function handleBlobsUpload(
       }
 
       const blobContents = await readFileAsync(blob);
-      const savingImage = uploadFile(blobContents, blob.name);
-      const imageUrl = (await savingImage.next()).value;
+      const imageUrl = await uploadFile(blobContents, blob.name, blob);
 
       const newState = textApi.getState();
       const uploadingTextIndex = newState.text.indexOf(placeHolder);

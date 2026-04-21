@@ -14,7 +14,8 @@ export type GetIcon = (iconName: string) => React.ReactNode;
 
 export type UploadFileHandler = (
   data: ArrayBuffer,
-  name: string
+  name: string,
+  blob: Blob
 ) => AsyncGenerator<string, boolean, void>;
 
 declare var INSERT_TEXT_AT_CURSOR: any;
