@@ -12,6 +12,7 @@ const css = {
 const checkedListIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="tasks"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -28,6 +29,7 @@ const checkedListIcon = (
 const orderedListIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="list-ol"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +62,7 @@ const unorderedListIcon = (
 const imageIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="image"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -76,6 +79,7 @@ const imageIcon = (
 const codeIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="code"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -92,6 +96,7 @@ const codeIcon = (
 const quoteIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="quote-right"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -108,6 +113,7 @@ const quoteIcon = (
 const linkIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="link"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +130,7 @@ const linkIcon = (
 const strikeThroughIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="strikethrough"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -140,6 +147,7 @@ const strikeThroughIcon = (
 const italicIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="italic"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -156,6 +164,7 @@ const italicIcon = (
 const headerIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="heading"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -172,6 +181,7 @@ const headerIcon = (
 const boldIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="bold"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
@@ -188,6 +198,7 @@ const boldIcon = (
 const maximizeIcon = (
   <svg
     aria-hidden="true"
+    className="svg-icon"
     data-icon="bold"
     role="img"
     xmlns="http://www.w3.org/2000/svg"

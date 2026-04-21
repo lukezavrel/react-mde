@@ -19,6 +19,7 @@ export const ToolbarButton = (props: ToolbarButtonProps) => {
 
   return (
     <li
+      className="mde-header-item"
       style={{
         display: 'inline-block',
         position: 'relative',

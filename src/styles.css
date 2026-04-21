@@ -224,14 +224,14 @@ ul.react-mde-sugesstions li[aria-selected='true'] {
   color: white;
   background-color: #0366d6;
 }
-div.react-mde-textarea {
+div.mde-textarea-wrapper {
   display: flex;
   flex: 1;
   flex-basis: auto;
   position: relative;
 }
 
-div.react-mde-textarea .textarea {
+div.mde-textarea-wrapper .mde-text {
   display: flex;
   flex: 1;
   border: 0;

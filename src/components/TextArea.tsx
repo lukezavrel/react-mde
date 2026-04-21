@@ -320,13 +320,13 @@ export const TextArea = (props: TextAreaProps) => {
 
   return (
     <div
-      className="react-mde-textarea"
+      className="mde-textarea-wrapper"
       style={{
         resize: maximized ? 'none' : 'vertical',
         minHeight: minHeight || 'auto',
       }}>
       <TextAreaComponent
-        className="textarea"
+        className="mde-text"
         ref={textarea}
         readOnly={readOnly}
         value={value}
