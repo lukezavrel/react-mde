@@ -62,35 +62,42 @@ function handleBlobsUpload(
       try {
         imageUrl = await uploadFile(blobContents, blob.name, blob);
       } catch (error) {
-        //TODO: handle error
-        console.error(error);
+        // leave imageUrl as null
       }
 
       const newState = textApi.getState();
       const uploadingTextIndex = newState.text.indexOf(placeHolder);
 
-      if (uploadingTextIndex != -1 && typeof imageUrl === 'string') {
-        // In this case, the user did not touch the placeholders. Good user
-        // we will replace it with the real one that came from the server
-        textApi.setSelectionRange({
-          start: uploadingTextIndex,
-          end: uploadingTextIndex + placeHolder.length,
-        });
-
-        let title = isImage(blob)
-          ? blob.name.substring(0, blob.name.lastIndexOf('.')) || blob.name
-          : blob.name;
-
-        title = isImage(blob) ? `![${title}]` : `[${title}]`;
-
-        const realImageMarkdown = `${breaksBefore}${title}(${imageUrl})\n`;
-        textApi.replaceSelection(realImageMarkdown);
-        blobsUploadedCount++;
-        if (blobsUploadedCount == blobs.length) {
+      if (uploadingTextIndex != -1) {
+        if (imageUrl === null) {
           textApi.setSelectionRange({
-            start: initialState.selection.start,
-            end: initialState.selection.start,
+            start: uploadingTextIndex,
+            end: uploadingTextIndex + placeHolder.length,
           });
+          textApi.replaceSelection('');
+        } else if (typeof imageUrl === 'string') {
+          // In this case, the user did not touch the placeholders. Good user
+          // we will replace it with the real one that came from the server
+          textApi.setSelectionRange({
+            start: uploadingTextIndex,
+            end: uploadingTextIndex + placeHolder.length,
+          });
+
+          let title = isImage(blob)
+            ? blob.name.substring(0, blob.name.lastIndexOf('.')) || blob.name
+            : blob.name;
+
+          title = isImage(blob) ? `![${title}]` : `[${title}]`;
+
+          const realImageMarkdown = `${breaksBefore}${title}(${imageUrl})\n`;
+          textApi.replaceSelection(realImageMarkdown);
+          blobsUploadedCount++;
+          if (blobsUploadedCount == blobs.length) {
+            textApi.setSelectionRange({
+              start: initialState.selection.start,
+              end: initialState.selection.start,
+            });
+          }
         }
       }
     });
