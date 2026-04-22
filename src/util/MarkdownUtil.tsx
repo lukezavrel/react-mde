@@ -28,7 +28,9 @@ export function getSurroundingWord(
       break;
     }
   }
-
+  if (['****', '``', '**', '~~~~'].includes(text.substring(start, end))) {
+    return { start: position, end: position}
+  }
   return { start, end };
 }
 
@@ -54,7 +56,7 @@ export function getBreaksNeededForEmptyLineBefore(
   text: string = '',
   startPosition: number
 ): number {
-  if (startPosition === 0) return 0;
+  if (startPosition === 0) return 1;
 
   // rules:
   // - If we're in the first line, no breaks are needed
@@ -68,14 +70,16 @@ export function getBreaksNeededForEmptyLineBefore(
       case 32: // blank space
         continue;
       case 10: // line break
-        neededBreaks -= 1;
+        if (neededBreaks > 1) {
+          neededBreaks -= 1;
+        }
         isInFirstLine = false;
         break;
       default:
         return neededBreaks;
     }
   }
-  return isInFirstLine ? 0 : neededBreaks;
+  return isInFirstLine ? 1 : neededBreaks;
 }
 
 /**
@@ -109,4 +113,15 @@ export function getBreaksNeededForEmptyLineAfter(
     }
   }
   return isInLastLine ? 0 : neededBreaks;
+}
+
+export function hasDecorators(text: string, start: number, end: number, decorators: string): boolean {
+  const decoratorsLength = decorators.length;
+  if (start >= decoratorsLength && text.length >= end + decoratorsLength) {
+    let textWithDecorators = text.substring(start - decoratorsLength, end + decoratorsLength);
+    if (textWithDecorators.substring(0, decoratorsLength) === decorators && textWithDecorators.substring(textWithDecorators.length - decoratorsLength) === decorators) {
+      return true;
+    }
+  }
+  return false;
 }

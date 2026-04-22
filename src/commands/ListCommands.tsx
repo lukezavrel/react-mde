@@ -53,13 +53,13 @@ export const makeList = (
     state1.text,
     state1.selection.start
   );
-  const breaksBefore = Array(breaksBeforeCount + 1).join('\n');
+  const breaksBefore = Array(breaksBeforeCount).join('\n');
 
   const breaksAfterCount = getBreaksNeededForEmptyLineAfter(
     state1.text,
     state1.selection.end
   );
-  const breaksAfter = Array(breaksAfterCount + 1).join('\n');
+  const breaksAfter = Array(breaksAfterCount).join('\n');
 
   const modifiedText = insertBeforeEachLine(state1.selectedText, insertBefore);
 
@@ -72,7 +72,7 @@ export const makeList = (
     state1.selectedText.indexOf('\n') === -1 ? modifiedText.insertionLength : 0;
 
   const selectionStart =
-    state1.selection.start + breaksBeforeCount + oneLinerOffset;
+    state1.selection.start + oneLinerOffset + breaksBeforeCount - 1;
   const selectionEnd =
     selectionStart + modifiedText.modifiedText.length - oneLinerOffset;
 

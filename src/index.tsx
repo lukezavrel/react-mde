@@ -16,7 +16,7 @@ export type UploadFileHandler = (
   data: ArrayBuffer,
   name: string,
   blob: Blob
-) => AsyncGenerator<string, boolean, void>;
+) => Promise<string>;
 
 declare var INSERT_TEXT_AT_CURSOR: any;
 

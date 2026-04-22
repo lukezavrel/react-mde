@@ -58,7 +58,13 @@ function handleBlobsUpload(
       }
 
       const blobContents = await readFileAsync(blob);
-      const imageUrl = await uploadFile(blobContents, blob.name, blob);
+      let imageUrl = null;
+      try {
+        imageUrl = await uploadFile(blobContents, blob.name, blob);
+      } catch (error) {
+        //TODO: handle error
+        console.error(error);
+      }
 
       const newState = textApi.getState();
       const uploadingTextIndex = newState.text.indexOf(placeHolder);

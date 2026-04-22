@@ -15,9 +15,9 @@ const LinkCommand = () => {
       selection: initialState.selection,
     });
     const state1 = textApi.setSelectionRange(newSelectionRange);
-    // Replaces the current selection with the bold mark up
+    // Replaces the current selection with the link mark up
     const state2 = textApi.replaceSelection(`[${state1.selectedText}](url)`);
-    // Adjust the selection to not contain the **
+    // Adjust the selection to not contain the [](url)
     textApi.setSelectionRange({
       start: state2.selection.end - 6 - state1.selectedText.length,
       end: state2.selection.end - 6,

@@ -4,6 +4,7 @@ import {
   getBreaksNeededForEmptyLineAfter,
   getBreaksNeededForEmptyLineBefore,
   selectWord,
+  hasDecorators
 } from '../util/MarkdownUtil.js';
 
 const CodeCommand = () => {
@@ -21,21 +22,41 @@ const CodeCommand = () => {
           text: initialState.text,
           selection: initialState.selection,
         });
-        const state1 = textApi.setSelectionRange(newSelectionRange);
+        let state1 = textApi.setSelectionRange(newSelectionRange);
+        const selectedText = state1.selectedText;
+        const hasDecoratorsValue = hasDecorators(initialState.text, newSelectionRange.start, newSelectionRange.end, '`');
 
         // when there's no breaking line
         if (state1.selectedText.indexOf('\n') === -1) {
-          textApi.replaceSelection(`\`${state1.selectedText}\``);
-          // Adjust the selection to not contain the **
-
-          const selectionStart = state1.selection.start + 1;
-          const selectionEnd = selectionStart + state1.selectedText.length;
-
-          textApi.setSelectionRange({
-            start: selectionStart,
-            end: selectionEnd,
-          });
-          return;
+          if (hasDecoratorsValue) {
+            state1 = textApi.setSelectionRange({
+              start: newSelectionRange.start - 1,
+              end: newSelectionRange.end + 1,
+            })
+            textApi.replaceSelection(`${selectedText}`);
+            // Adjust the selection to not contain the **
+  
+            const selectionStart = state1.selection.start;
+            const selectionEnd = selectionStart + selectedText.length;
+  
+            textApi.setSelectionRange({
+              start: selectionStart,
+              end: selectionEnd,
+            });
+            return;
+          } else {
+            textApi.replaceSelection(`\`${selectedText}\``);
+            // Adjust the selection to not contain the **
+  
+            const selectionStart = state1.selection.start + 1;
+            const selectionEnd = selectionStart + selectedText.length;
+  
+            textApi.setSelectionRange({
+              start: selectionStart,
+              end: selectionEnd,
+            });
+            return;
+          }
         }
 
         const breaksBeforeCount = getBreaksNeededForEmptyLineBefore(

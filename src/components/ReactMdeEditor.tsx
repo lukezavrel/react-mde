@@ -33,7 +33,7 @@ export type ReactMdeEditorProps = {
   children?: any;
 };
 
-export const ReactMdeEditor = (props: ReactMdeEditorProps) => {
+export const ReactMdeEditor = React.forwardRef((props: ReactMdeEditorProps, ref) => {
   const {
     customLayout,
     loadingPreview,
@@ -53,7 +53,7 @@ export const ReactMdeEditor = (props: ReactMdeEditorProps) => {
   const { maximized, preview, selectedTab } = useReactMde();
 
   return (
-    <div className={`react-mde ${maximized ? 'maximized' : ''}`}>
+    <div className={`react-mde ${maximized ? 'maximized' : ''}`} ref={ref as React.RefObject<HTMLDivElement>}>
       <Toolbar customLayout={customLayout} disablePreview={disablePreview} />
       <div
         className="react-mde-editor"
@@ -91,4 +91,4 @@ export const ReactMdeEditor = (props: ReactMdeEditorProps) => {
       )}
     </div>
   );
-};
+});
