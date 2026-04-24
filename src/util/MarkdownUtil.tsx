@@ -6,7 +6,7 @@ export function getSurroundingWord(
 ): SelectionRange {
   if (!text) throw Error("Argument 'text' should be truthy");
 
-  const isWordDelimiter = (c: string) => c === ' ' || c.charCodeAt(0) === 10;
+  const isWordDelimiter = (c: string) => c === ' ' || c.charCodeAt(0) === 10 || c === '<' || c === '>';
 
   // leftIndex is initialized to 0 because if selection is 0, it won't even enter the iteration
   let start = 0;
@@ -124,4 +124,35 @@ export function hasDecorators(text: string, start: number, end: number, decorato
     }
   }
   return false;
+}
+
+export function hasTextAlign(text: string, start: number, end: number): boolean {
+  // take the part before the selection and after the selection
+  const before = text.slice(0, start);
+  const after = text.slice(end);
+
+  if (text.length > start && start > 0 && text[start - 1] !== '>') {
+    return false;
+  }
+  if (end < text.length && text[end] !== '<') {
+    return false;
+  }
+
+  // find the last open <p ...> before the selection
+  const openTagMatch = before.match(/<p[^>]*style=["'][^"']*text-align\s*:\s*[^"']+[^"']*["'][^>]*>/gi);
+  if (!openTagMatch) return false;
+
+  const lastOpenTag = openTagMatch[openTagMatch.length - 1];
+
+  // check that there is no closing </p> between the last open tag and the selection
+  const lastOpenIndex = before.lastIndexOf(lastOpenTag);
+  const afterOpen = before.slice(lastOpenIndex);
+
+  if (afterOpen.includes("</p>")) return false;
+
+  // check that there is a closing </p> after the selection
+  const closeIndex = after.indexOf("</p>");
+  if (closeIndex === -1) return false;
+
+  return true;
 }

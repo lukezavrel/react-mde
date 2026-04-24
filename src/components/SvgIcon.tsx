@@ -195,6 +195,77 @@ const boldIcon = (
   </svg>
 );
 
+const tableIcon = (
+  <svg 
+  aria-hidden="true"
+  className="svg-icon"
+  data-icon="table"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg" 
+  viewBox="0 0 448 512" 
+  style={css}
+  >
+      <path fill="currentColor" d="M384 32c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64l-320 0-6.5-.3C25.2 476.4 0 449.1 0 416L0 96C0 60.7 28.7 32 64 32l320 0zM64 320l0 96 128 0 0-96-128 0zm192 0l0 96 128 0 0-96-128 0zM64 256l128 0 0-96-128 0 0 96zm192 0l128 0 0-96-128 0 0 96z"/>
+  </svg>
+);  
+
+const textAlignLeftIcon = (
+  <svg
+    aria-hidden="true"
+    className="svg-icon"
+    data-icon="text-align-left"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 480"
+    style={css}
+  >
+    <path fill="currentColor" d="M288 64c0 17.7-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l224 0c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32L32 352c-17.7 0-32-14.3-32-32s14.3-32 32-32l224 0c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 224c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+  </svg>
+);
+
+const textAlignCenterIcon = (
+  <svg
+    aria-hidden="true"
+    className="svg-icon"
+    data-icon="text-align-center"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 480"
+    style={css}
+  >
+    <path fill="currentColor" d="M352 64c0-17.7-14.3-32-32-32L128 32c-17.7 0-32 14.3-32 32s14.3 32 32 32l192 0c17.7 0 32-14.3 32-32zm96 128c0-17.7-14.3-32-32-32L32 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32-14.3 32-32zM0 448c0 17.7 14.3 32 32 32l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 416c-17.7 0-32 14.3-32 32zM352 320c0-17.7-14.3-32-32-32l-192 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l192 0c17.7 0 32-14.3 32-32z"/>
+  </svg>
+);
+
+const textAlignRightIcon = (
+  <svg
+    aria-hidden="true"
+    className="svg-icon"
+    data-icon="text-align-right"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 480"
+    style={css}
+  >
+    <path fill="currentColor" d="M448 64c0 17.7-14.3 32-32 32L192 96c-17.7 0-32-14.3-32-32s14.3-32 32-32l224 0c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32l-224 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l224 0c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 224c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+  </svg>
+);
+
+const textAlignJustifyIcon = (
+  <svg
+    aria-hidden="true"
+    className="svg-icon"
+    data-icon="text-align-justify"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 480"
+    style={css}
+  >
+    <path fill="currentColor" d="M448 64c0-17.7-14.3-32-32-32L32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32zm0 256c0-17.7-14.3-32-32-32L32 288c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32-14.3 32-32zM0 192c0 17.7 14.3 32 32 32l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 160c-17.7 0-32 14.3-32 32zM448 448c0-17.7-14.3-32-32-32L32 416c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32-14.3 32-32z"/>
+  </svg>
+
+);
+
 const maximizeIcon = (
   <svg
     aria-hidden="true"
@@ -250,6 +321,16 @@ const SvgIcon = (props: any) => {
       return checkedListIcon;
     case 'maximize':
       return maximizeIcon;
+    case 'table':
+      return tableIcon;
+    case 'text-align-left':
+      return textAlignLeftIcon;
+    case 'text-align-center':
+      return textAlignCenterIcon;
+    case 'text-align-right':
+      return textAlignRightIcon;
+    case 'text-align-justify':
+      return textAlignJustifyIcon;
     default:
       return null;
   }

@@ -6,6 +6,8 @@ const enL18n: L18n = {
   uploadingFile: 'Uploading file...',
   pasteDropSelect:
     'Attach files by dragging & dropping, selecting or pasting them.',
+  tableInsertInfoStart: 'Insert a',
+  tableInsertInfoEnd: 'table',
 };
 
 export default enL18n;

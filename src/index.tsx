@@ -69,6 +69,8 @@ export interface L18n {
   preview: React.ReactNode;
   uploadingFile: string;
   pasteDropSelect: string;
+  tableInsertInfoStart: string;
+  tableInsertInfoEnd: string;
 }
 
 export interface MarkdownState {

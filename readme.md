@@ -78,7 +78,7 @@ The types are described below
 - **disableMaximize?: boolean;** Disables the maximize command.
 - **initialMaximized?: boolean;** The initial maximized state; defaults to false.
 - **onMaximizedChange: (isMaximized: boolean) => void**: Function called when maximized
-- **l18n?**: A localization option. It contains the strings `write`, `preview`,`uploadingFile` and `pasteDropSelect`.
+- **l18n?**: A localization option. It contains the strings `write`, `preview`,`uploadingFile`,`pasteDropSelect`,`tableInsertInfoStart`,`tableInsertInfoEnd`.
 - **children: any;** Pass children for adding custom non-ui commands
 
 ## ReactMdeEditor Props

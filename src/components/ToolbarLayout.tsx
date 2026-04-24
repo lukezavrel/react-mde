@@ -12,6 +12,8 @@ import {
   UnorderedListCommand,
   CheckedListCommand,
   StrikethroughCommand,
+  TableCommand,
+  TextAlignCommands,
 } from '../commands/index.js';
 import ToggleMaximizeCommand from '../commands/ToggleMaximizeCommand.js';
 import { useReactMde } from './ReactMdeContext.js';
@@ -26,12 +28,14 @@ export const ToolbarLayout = (props: { beforeSpacer?: any, afterSpacer?: any }) 
         <BoldCommand />
         <ItalicCommand />
         <StrikethroughCommand />
+        <TextAlignCommands />
       </ToolbarButtonGroup>
       <ToolbarButtonGroup key="special">
         <LinkCommand />
         <QuoteCommand />
         <CodeCommand />
         <ImageCommand />
+        <TableCommand />
       </ToolbarButtonGroup>
       <ToolbarButtonGroup key="lists">
         <UnorderedListCommand />
@@ -39,7 +43,7 @@ export const ToolbarLayout = (props: { beforeSpacer?: any, afterSpacer?: any }) 
         <CheckedListCommand />
       </ToolbarButtonGroup>
       {beforeSpacer}
-      <ul className='spacer' />
+      {/* <ul className='spacer' /> */}
       {afterSpacer}
       {!disableMaximize && (
         <ul className="maximizeRight">

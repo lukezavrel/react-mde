@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
+export type ToolbarDropdownChildren =
+  | React.ReactNode
+  | ((closeDropdown: () => void) => React.ReactNode);
+
 export type ToolbarDropdownProps = {
   dropdownContent: React.ReactNode;
   readOnly: boolean;
-  children: any;
+  children: ToolbarDropdownChildren;
 };
 
 export const ToolbarDropdown = (props: ToolbarDropdownProps) => {
@@ -44,10 +48,11 @@ export const ToolbarDropdown = (props: ToolbarDropdownProps) => {
     };
   }, []);
 
-  // TODO
-  const handleOnClickCommand = (commandName: string) => {
-    //onCommand(commandName);
-    closeDropdown();
+  const renderDropdownBody = () => {
+    if (typeof children === 'function') {
+      return (children as (close: () => void) => React.ReactNode)(closeDropdown);
+    }
+    return children;
   };
 
   const handleClick = () => {
@@ -60,7 +65,7 @@ export const ToolbarDropdown = (props: ToolbarDropdownProps) => {
 
   const dropdownItems = open ? (
     <ul className="mde-header-dropdown-items" ref={dropdown}>
-      {children}
+      {renderDropdownBody()}
     </ul>
   ) : null;
 

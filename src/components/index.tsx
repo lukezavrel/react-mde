@@ -1,5 +1,6 @@
 export * from './ToolbarButtonGroup.js';
 export * from './ToolbarButton.js';
+export * from './ToolbarDropdown.js';
 export * from './Preview.js';
 export * from './TextArea.js';
 export * from './Toolbar.js';

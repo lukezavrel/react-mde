@@ -11,5 +11,7 @@ export { default as LinkCommand } from './LinkCommand.js';
 export { default as CodeCommand } from './CodeCommand.js';
 export { default as QuoteCommand } from './QuoteCommand.js';
 export { default as ImageCommand } from './ImageCommand.js';
+export { default as TableCommand } from './TableCommand.js';
+export { default as TextAlignCommands } from './TextAlignCommands.js';
 export * from './ListCommands.js';
 export * from './UploadFileCommand.js';
