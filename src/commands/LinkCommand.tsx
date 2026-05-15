@@ -15,12 +15,13 @@ const LinkCommand = () => {
       selection: initialState.selection,
     });
     const state1 = textApi.setSelectionRange(newSelectionRange);
+    const linkUrlPlaceholder = 'url'
     // Replaces the current selection with the link mark up
-    const state2 = textApi.replaceSelection(`[${state1.selectedText}](url)`);
+    const state2 = textApi.replaceSelection(`[${state1.selectedText}](${linkUrlPlaceholder})`);
     // Adjust the selection to not contain the [](url)
     textApi.setSelectionRange({
-      start: state2.selection.end - 6 - state1.selectedText.length,
-      end: state2.selection.end - 6,
+      start: state2.selection.end - 1 - linkUrlPlaceholder.length,
+      end: state2.selection.end - 1,
     });
   }, []);
 

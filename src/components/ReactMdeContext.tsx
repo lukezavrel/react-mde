@@ -50,6 +50,9 @@ export type ReactMdeContextData = {
   onMaximizedChange?: (isMaximized: boolean) => void;
   maximized: boolean;
   setMaximized: Dispatch<SetStateAction<boolean>>;
+  /** Increments when textarea selection/caret may have changed (toolbar active state). */
+  selectionRevision: number;
+  bumpSelection: () => void;
 };
 
 const ReactMdeContext = createContext<ReactMdeContextData | undefined>(
@@ -77,6 +80,10 @@ export const ReactMdeProvider = (props: ReactMdeProviderProps) => {
     children,
   } = props;
   const textarea = useRef<null | HTMLTextAreaElement>(null);
+  const [selectionRevision, setSelectionRevision] = useState(0);
+  const bumpSelection = useCallback(() => {
+    setSelectionRevision((n) => n + 1);
+  }, []);
   const eventHandlers = useRef<EventRegistration[]>([]);
   const getTextState = useCallback(() => {
     if (textarea.current == null) {
@@ -121,6 +128,14 @@ export const ReactMdeProvider = (props: ReactMdeProviderProps) => {
   };
 
   const textApi = useRef(new TextAreaTextApi(getTextState, textarea));
+
+  useEffect(() => {
+    textApi.current.notifySelectionChange = bumpSelection;
+    return () => {
+      textApi.current.notifySelectionChange = undefined;
+    };
+  }, [bumpSelection]);
+
   const preview = useRef<null | HTMLDivElement>(null);
   const [selectedTab, setSelectedTab] = useState<Tab>('write');
 
@@ -167,6 +182,8 @@ export const ReactMdeProvider = (props: ReactMdeProviderProps) => {
         disableMaximize,
         maximized,
         setMaximized,
+        selectionRevision,
+        bumpSelection,
       }}>
       {children}
     </ReactMdeContext.Provider>

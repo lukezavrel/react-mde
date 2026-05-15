@@ -37,7 +37,7 @@ const TableCommand = () => {
   };
 
   return (
-    <ToolbarDropdown dropdownContent={getIcon('table')} readOnly={false}>
+    <ToolbarDropdown dropdownContent={getIcon('table')} active={false} readOnly={false}>
       {(close) => (
         <div style={{ width: 'max-content' }}>
           {Array.from({ length: tableRows }, (_, rowIndex) => (

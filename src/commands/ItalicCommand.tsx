@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { useCallback, useEffect } from 'react';
 import { ToolbarButton, useReactMde } from '../components/index.js';
-import { selectWord, hasDecorators } from '../util/MarkdownUtil.js';
+import { selectWord, hasDecorators, getActiveInlineDecorators } from '../util/MarkdownUtil.js';
 
 const ItalicCommand = () => {
-  const { getTextState, textApi, getIcon, registerEventHandler } =
+  const { getTextState, textApi, getIcon, registerEventHandler, selectionRevision } =
     useReactMde();
+  void selectionRevision;
+  const { text, selection } = getTextState();
+  const pressed = getActiveInlineDecorators(text, selection).some(
+    (d) => d.kind === 'italic',
+  );
 
   const onClick = useCallback(() => {
     const initialState = getTextState();
@@ -55,7 +60,12 @@ const ItalicCommand = () => {
   }, [onClick]);
 
   return (
-    <ToolbarButton name="italic" aria-label="Add italic text" onClick={onClick}>
+    <ToolbarButton
+      name="italic"
+      aria-label="Add italic text"
+      onClick={onClick}
+      aria-pressed={pressed}
+      className={pressed ? 'toolbarButton active' : 'toolbarButton'}>
       {getIcon('italic')}
     </ToolbarButton>
   );

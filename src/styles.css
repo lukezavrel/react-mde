@@ -296,6 +296,11 @@ div.mde-tabs button.selected {
   white-space: nowrap;
 }
 
+.toolbarButton.active,
+.toolbarButton[aria-pressed='true'] {
+  color: #06c;
+}
+
 .toolbarButton .tooltipped:hover::before {
   opacity: 0;
   position: absolute;

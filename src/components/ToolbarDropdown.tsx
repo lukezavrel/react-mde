@@ -9,10 +9,11 @@ export type ToolbarDropdownProps = {
   dropdownContent: React.ReactNode;
   readOnly: boolean;
   children: ToolbarDropdownChildren;
+  active: boolean;
 };
 
 export const ToolbarDropdown = (props: ToolbarDropdownProps) => {
-  const { readOnly, dropdownContent, children } = props;
+  const { readOnly, dropdownContent, children, active } = props;
   const dropdown = useRef<any>(null);
   const dropdownOpener = useRef<any>(null);
   const [open, setOpen] = useState(false);
@@ -72,7 +73,7 @@ export const ToolbarDropdown = (props: ToolbarDropdownProps) => {
   return (
     <li className="mde-header-dropdown">
       <button
-        className="toolbarButton"
+        className={"toolbarButton" + (active ? " active" : "")}
         type="button"
         tabIndex={-1}
         ref={dropdownOpener}

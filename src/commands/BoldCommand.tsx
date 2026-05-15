@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { useCallback, useEffect } from 'react';
 import { ToolbarButton, useReactMde } from '../components/index.js';
-import { selectWord, hasDecorators } from '../util/MarkdownUtil.js';
+import { selectWord, hasDecorators, getActiveInlineDecorators } from '../util/MarkdownUtil.js';
 
 const BoldCommand = () => {
-  const { getTextState, textApi, getIcon, registerEventHandler } =
+  const { getTextState, textApi, getIcon, registerEventHandler, selectionRevision } =
     useReactMde();
+  void selectionRevision;
+  const { text, selection } = getTextState();
+  const pressed = getActiveInlineDecorators(text, selection).some(
+    (d) => d.kind === 'bold',
+  );
 
   const onClick = useCallback(() => {
     const initialState = getTextState();
@@ -55,7 +60,12 @@ const BoldCommand = () => {
   }, [onClick]);
 
   return (
-    <ToolbarButton name="bold" aria-label="Add bold text" onClick={onClick}>
+    <ToolbarButton
+      name="bold"
+      aria-label="Add bold text"
+      onClick={onClick}
+      aria-pressed={pressed}
+      className={pressed ? 'toolbarButton active' : 'toolbarButton'}>
       {getIcon('bold')}
     </ToolbarButton>
   );

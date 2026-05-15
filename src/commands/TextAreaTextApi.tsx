@@ -4,6 +4,8 @@ import insertText from '../util/InsertTextAtPosition.js';
 export default class TextAreaTextApi implements TextApi {
   textAreaRef: { current: null | HTMLTextAreaElement };
   getTextState: Function;
+  /** Optional hook after selection/value updates from this API (e.g. toolbar pressed state). */
+  notifySelectionChange?: () => void;
 
   constructor(
     getTextState: Function,
@@ -18,7 +20,9 @@ export default class TextAreaTextApi implements TextApi {
     if (textArea) {
       insertText(textArea, text);
     }
-    return this.getTextState(textArea);
+    const state = this.getTextState(textArea);
+    this.notifySelectionChange?.();
+    return state;
   }
 
   setSelectionRange(selection: SelectionRange): TextState {
@@ -28,7 +32,9 @@ export default class TextAreaTextApi implements TextApi {
       textArea.selectionStart = selection.start;
       textArea.selectionEnd = selection.end;
     }
-    return this.getTextState(textArea);
+    const state = this.getTextState(textArea);
+    this.notifySelectionChange?.();
+    return state;
   }
 
   getState(): TextState {

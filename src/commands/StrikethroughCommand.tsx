@@ -1,14 +1,21 @@
 import * as React from 'react';
 import { ToolbarButton, useReactMde } from '../components/index.js';
-import { hasDecorators, selectWord } from '../util/MarkdownUtil.js';
+import { hasDecorators, selectWord, getActiveInlineDecorators } from '../util/MarkdownUtil.js';
 
 const StrikeThroughCommand = () => {
-  const { getTextState, textApi, getIcon } = useReactMde();
+  const { getTextState, textApi, getIcon, selectionRevision } = useReactMde();
+  void selectionRevision;
+  const { text, selection } = getTextState();
+  const pressed = getActiveInlineDecorators(text, selection).some(
+    (d) => d.kind === 'strikethrough',
+  );
 
   return (
     <ToolbarButton
       name="strikethrough"
       aria-label="Add strikethrough text"
+      aria-pressed={pressed}
+      className={pressed ? 'toolbarButton active' : 'toolbarButton'}
       onClick={() => {
         const initialState = getTextState();
         const newSelectionRange = selectWord({

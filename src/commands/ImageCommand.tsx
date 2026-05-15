@@ -17,12 +17,13 @@ const ImageCommand = () => {
           selection: initialState.selection,
         });
         const state1 = textApi.setSelectionRange(newSelectionRange);
+        const imageUrlPlaceholder = 'imageUrl'
         // Replaces the current selection with the image mark up
-        const state2 = textApi.replaceSelection(`![${state1.selectedText}](imageUrl)`);
+        const state2 = textApi.replaceSelection(`![${state1.selectedText}](${imageUrlPlaceholder})`);
         // Adjust the selection to not contain the [](imageUrl)
         textApi.setSelectionRange({
-          start: state2.selection.end - 11 - state1.selectedText.length,
-          end: state2.selection.end - 11,
+          start: state2.selection.end - 1 - imageUrlPlaceholder.length,
+          end: state2.selection.end - 1,
         });
       }}>
       {getIcon('image')}

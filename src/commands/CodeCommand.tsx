@@ -4,16 +4,24 @@ import {
   getBreaksNeededForEmptyLineAfter,
   getBreaksNeededForEmptyLineBefore,
   selectWord,
-  hasDecorators
+  hasDecorators,
+  getActiveInlineDecorators,
 } from '../util/MarkdownUtil.js';
 
 const CodeCommand = () => {
-  const { getTextState, textApi, getIcon } = useReactMde();
+  const { getTextState, textApi, getIcon, selectionRevision } = useReactMde();
+  void selectionRevision;
+  const { text, selection } = getTextState();
+  const pressed = getActiveInlineDecorators(text, selection).some(
+    (d) => d.kind === 'inlineCode',
+  );
 
   return (
     <ToolbarButton
       name="code"
       aria-label="Insert code"
+      aria-pressed={pressed}
+      className={pressed ? 'toolbarButton active' : 'toolbarButton'}
       onClick={() => {
         const initialState = getTextState();
 

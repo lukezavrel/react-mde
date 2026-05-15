@@ -1,11 +1,18 @@
 import * as React from 'react';
 import { useCallback, useState } from 'react';
 import { ToolbarDropdown, useReactMde } from '../components/index.js';
-import { selectWord, hasTextAlign } from '../util/MarkdownUtil.js';
+import {
+  selectWord,
+  hasTextAlign,
+  getActiveInlineDecorators,
+  getTextAlignOpenTagRegex,
+} from '../util/MarkdownUtil.js';
 
 const TextAlignCommands = () => {
-  const { getTextState, textApi, getIcon, l18n } =
-    useReactMde();
+  const { getTextState, textApi, getIcon, selectionRevision } = useReactMde();
+  void selectionRevision;
+  const { text, selection } = getTextState();
+  const activeKinds = getActiveInlineDecorators(text, selection).map((d) => d.kind);
 
   const onClick = useCallback((align: 'left' | 'center' | 'right' | 'justify') => {
    const initialState = getTextState();
@@ -21,7 +28,7 @@ const TextAlignCommands = () => {
     const textSuffix = `</p>`;
     // set selection to include the text align html
     const before = initialState.text.slice(0, newSelectionRange.start);
-    const openTagMatch = before.match(/<p[^>]*style=["'][^"']*text-align\s*:\s*[^"']+[^"']*["'][^>]*>/gi);
+    const openTagMatch = before.match(getTextAlignOpenTagRegex());
      const lastOpenTag = openTagMatch[openTagMatch.length - 1];
      const lastOpenIndex = before.lastIndexOf(lastOpenTag);
      state1 = textApi.setSelectionRange({
@@ -60,9 +67,20 @@ const TextAlignCommands = () => {
      });
    }
   }, []);
-
+  let icon = getIcon('text-align-left');
+  let highlightIcon = false;
+  if (activeKinds.includes('textAlignCenter')) {
+    icon = getIcon('text-align-center');
+    highlightIcon = true; 
+  } else if (activeKinds.includes('textAlignRight')) {
+    icon = getIcon('text-align-right');
+    highlightIcon = true;
+  } else if (activeKinds.includes('textAlignJustify')) {
+    icon = getIcon('text-align-justify');
+    highlightIcon = true;
+  }
   return (
-    <ToolbarDropdown dropdownContent={getIcon('text-align-center')} readOnly={false}>
+    <ToolbarDropdown dropdownContent={icon} active={highlightIcon} readOnly={false}>
       {(close) => (
         <div style={{ width: 'max-content' }}>
           <button

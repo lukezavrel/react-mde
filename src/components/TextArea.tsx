@@ -53,7 +53,7 @@ const initialMention: MentionState = {
 };
 
 export const TextArea = (props: TextAreaProps) => {
-  const { textarea, handlePossibleEvent } = useReactMde();
+  const { textarea, handlePossibleEvent, bumpSelection } = useReactMde();
   const {
     readOnly,
     textAreaProps,
@@ -338,6 +338,15 @@ export const TextArea = (props: TextAreaProps) => {
         onChange={(event) => {
           textAreaProps?.onChange?.(event);
           handleOnChange(event);
+          bumpSelection();
+        }}
+        onSelect={(event) => {
+          textAreaProps?.onSelect?.(event);
+          bumpSelection();
+        }}
+        onMouseUp={(event) => {
+          textAreaProps?.onMouseUp?.(event);
+          bumpSelection();
         }}
         onBlur={(event) => {
           if (suggestionsEnabled()) {
@@ -350,8 +359,9 @@ export const TextArea = (props: TextAreaProps) => {
           handleKeyDown(event);
         }}
         onKeyUp={(event) => {
+          textAreaProps?.onKeyUp?.(event);
+          bumpSelection();
           if (suggestionsEnabled()) {
-            textAreaProps?.onKeyUp?.(event);
             handleKeyUp(event);
           }
         }}
