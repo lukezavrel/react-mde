@@ -113,7 +113,7 @@ const App = () => {
           <span className="version">{`v${pkg.version}`}</span>
         </a>
       </div>
-      <ReactMdeProvider onMaximizedChange={handleMaximizedChange}>
+      <ReactMdeProvider onMaximizedChange={handleMaximizedChange} enableTextColor={true} enableBackgroundColor={true}>
         <ReactMdeEditor
           value={value}
           customLayout={withCustomToolbar ? <CustomLayout /> : undefined}

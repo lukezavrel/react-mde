@@ -14,13 +14,15 @@ import {
   StrikethroughCommand,
   TableCommand,
   TextAlignCommands,
+  TextColorCommand,
+  BackgroundColorCommand,
 } from '../commands/index.js';
 import ToggleMaximizeCommand from '../commands/ToggleMaximizeCommand.js';
 import { useReactMde } from './ReactMdeContext.js';
 
 export const ToolbarLayout = (props: { beforeSpacer?: any, afterSpacer?: any }) => {
   const { beforeSpacer, afterSpacer } = props;
-  const { disableMaximize } = useReactMde();
+  const { disableMaximize, enableTextColor, enableBackgroundColor } = useReactMde();
   return (
     <>
       <ToolbarButtonGroup key="font">
@@ -29,6 +31,8 @@ export const ToolbarLayout = (props: { beforeSpacer?: any, afterSpacer?: any }) 
         <ItalicCommand />
         <StrikethroughCommand />
         <TextAlignCommands />
+        {enableTextColor && <TextColorCommand />}
+        {enableBackgroundColor && <BackgroundColorCommand />}
       </ToolbarButtonGroup>
       <ToolbarButtonGroup key="special">
         <LinkCommand />

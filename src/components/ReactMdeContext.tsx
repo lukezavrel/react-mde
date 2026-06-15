@@ -46,6 +46,8 @@ export type ReactMdeContextData = {
   registerEventHandler: (reg: EventRegistration) => void;
   handlePossibleEvent: EventFilter;
   disableMaximize?: boolean;
+  enableTextColor?: boolean;
+  enableBackgroundColor?: boolean;
   initialMaximized?: boolean;
   onMaximizedChange?: (isMaximized: boolean) => void;
   maximized: boolean;
@@ -64,6 +66,8 @@ export type ReactMdeProviderProps = {
   onTabChange?: (tab: Tab) => void;
   getIcon?: GetIcon;
   disableMaximize?: boolean;
+  enableTextColor?: boolean;
+  enableBackgroundColor?: boolean;
   initialMaximized?: boolean;
   onMaximizedChange?: (isMaximized: boolean) => void;
   l18n?: L18n;
@@ -72,8 +76,10 @@ export type ReactMdeProviderProps = {
 export const ReactMdeProvider = (props: ReactMdeProviderProps) => {
   const {
     onTabChange,
-    getIcon = (name) => <SvgIcon icon={name} />,
+    getIcon = (name, additionalProps) => <SvgIcon icon={name} additionalProps={additionalProps} />,
     disableMaximize,
+    enableTextColor = false,
+    enableBackgroundColor = false,
     initialMaximized,
     onMaximizedChange,
     l18n = enL18n,
@@ -180,6 +186,8 @@ export const ReactMdeProvider = (props: ReactMdeProviderProps) => {
         registerEventHandler,
         handlePossibleEvent,
         disableMaximize,
+        enableTextColor,
+        enableBackgroundColor,
         maximized,
         setMaximized,
         selectionRevision,

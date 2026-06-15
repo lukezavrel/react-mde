@@ -8,3 +8,4 @@ export * from './ToolbarLayout.js';
 export * from './ReactMdeContext.js';
 export * from './ReactMdeEditor.js';
 export * from './SuggestionsDropdown.js';
+export * from './ColorPaletteDropdown.js';

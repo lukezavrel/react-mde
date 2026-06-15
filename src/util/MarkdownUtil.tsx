@@ -1,4 +1,5 @@
 import { SelectionRange, TextSection } from '../index.js';
+import { findStyleSpanContaining } from './styleSpanUtil.js';
 
 export function getSurroundingWord(
   text: string,
@@ -122,7 +123,9 @@ export type ActiveInlineDecoratorKind =
   | 'inlineCode'
   | 'textAlignCenter'
   | 'textAlignRight'
-  | 'textAlignJustify';
+  | 'textAlignJustify'
+  | 'textColor'
+  | 'backgroundColor';
 
 /**
  * Open {@code <p>} tag with an inline {@code text-align} style (same pattern as toolbar HTML).
@@ -447,11 +450,36 @@ function tryTextAlignContaining(
   };
 }
 
+function tryStyleSpanDecoratorsContaining(
+  text: string,
+  selection: SelectionRange,
+): ActiveInlineDecorator[] {
+  const span = findStyleSpanContaining(text, selection);
+  if (!span) {
+    return [];
+  }
+  const base = {
+    open: span.open,
+    close: span.close,
+    content: span.content,
+  };
+  const out: ActiveInlineDecorator[] = [];
+  if (span.styles.color) {
+    out.push({ kind: 'textColor', ...base });
+  }
+  if (span.styles.backgroundColor) {
+    out.push({ kind: 'backgroundColor', ...base });
+  }
+  return out;
+}
+
 const ACTIVE_INLINE_ORDER: ActiveInlineDecoratorKind[] = [
   'bold',
   'italic',
   'strikethrough',
   'inlineCode',
+  'textColor',
+  'backgroundColor',
   'textAlignCenter',
   'textAlignRight',
   'textAlignJustify',
@@ -477,6 +505,7 @@ export function getActiveInlineDecorators(
   if (code) out.push(code);
   const align = tryTextAlignContaining(text, selection);
   if (align) out.push(align);
+  out.push(...tryStyleSpanDecoratorsContaining(text, selection));
   return out;
 }
 

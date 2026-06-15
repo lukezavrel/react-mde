@@ -10,7 +10,7 @@ export interface ChildProps {
   textArea?: TextAreaChildProps;
 }
 
-export type GetIcon = (iconName: string) => React.ReactNode;
+export type GetIcon = (iconName: string, additionalProps?: any) => React.ReactNode;
 
 export type UploadFileHandler = (
   data: ArrayBuffer,
@@ -71,6 +71,10 @@ export interface L18n {
   pasteDropSelect: string;
   tableInsertInfoStart: string;
   tableInsertInfoEnd: string;
+  textColor?: string;
+  backgroundColor?: string;
+  defaultColor?: string;
+  defaultBackgroundColor?: string;
 }
 
 export interface MarkdownState {

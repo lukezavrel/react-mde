@@ -7,6 +7,10 @@ const zhL18n: L18n = {
   pasteDropSelect: '通过拖放，选择和粘贴来附加文件。',
   tableInsertInfoStart: '插入',
   tableInsertInfoEnd: '表格',
+  textColor: '文字颜色',
+  backgroundColor: '背景颜色',
+  defaultColor: '默认',
+  defaultBackgroundColor: '默认',
 };
 
 export default zhL18n;

@@ -8,6 +8,10 @@ const enL18n: L18n = {
     'Attach files by dragging & dropping, selecting or pasting them.',
   tableInsertInfoStart: 'Insert a',
   tableInsertInfoEnd: 'table',
+  textColor: 'Text color',
+  backgroundColor: 'Background color',
+  defaultColor: 'Default',
+  defaultBackgroundColor: 'Default',
 };
 
 export default enL18n;

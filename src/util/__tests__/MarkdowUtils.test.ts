@@ -199,5 +199,12 @@ describe('MarkdownUtil', () => {
         'textAlignCenter',
       );
     });
+
+    it('detects textColor and backgroundColor inside styled span', () => {
+      const text = '<span style="color:#cc2c32;background-color:#facccc">hi</span>';
+      const caret = text.indexOf('h');
+      const dec = getActiveInlineDecorators(text, { start: caret, end: caret });
+      expect(dec.map((d) => d.kind).sort()).toEqual(['backgroundColor', 'textColor']);
+    });
   });
 });
