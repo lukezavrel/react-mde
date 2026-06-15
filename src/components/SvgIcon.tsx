@@ -369,7 +369,6 @@ const maximizeIcon = (
 );
 
 const SvgIcon = (props: any) => {
-  console.log('props', props);
   const { icon } = props;
   switch (icon) {
     case 'header1':
