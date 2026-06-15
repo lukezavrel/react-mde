@@ -87,6 +87,7 @@ const TextAlignCommands = () => {
             name="text-align-left"
             type="button"
             aria-label="Align text left"
+            className="mde-text-align-left"
             onClick={() => {
               onClick('left');
               close();
@@ -97,6 +98,7 @@ const TextAlignCommands = () => {
             name="text-align-center"
             type="button"
             aria-label="Align text center"
+            className="mde-text-align-center"
             onClick={() => {
               onClick('center');
               close();
@@ -107,6 +109,7 @@ const TextAlignCommands = () => {
             name="text-align-right"
             type="button"
             aria-label="Align text right"
+            className="mde-text-align-right"
             onClick={() => {
               onClick('right');
               close();
@@ -117,6 +120,7 @@ const TextAlignCommands = () => {
             name="text-align-justify"
             type="button"
             aria-label="Align text justify"
+            className="mde-text-align-justify"
             onClick={() => {
               onClick('justify');
               close();
