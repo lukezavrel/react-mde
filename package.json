@@ -1,17 +1,31 @@
 {
   "name": "@lukaszavrel/react-mde",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "React Markdown Editor",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "cjs/index.js",
+  "module": "lib/index.js",
   "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./styles.css": "./lib/styles.css",
+    "./package.json": "./package.json",
+    "./*": "./*"
+  },
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "cjs/**/*"
   ],
   "scripts": {
     "prepare": "npm run build && npm run build-docs",
     "test": "jest",
-    "build": "tsc && cp src/styles.css lib/styles.css",
+    "build": "npm run build-esm && npm run build-cjs",
+    "build-esm": "tsc && cp src/styles.css lib/styles.css",
+    "build-cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > cjs/package.json",
     "build-docs": "npx esbuild --bundle ./docs/client.tsx --outfile=./docs/bundle.js --minify --charset=utf8",
     "dev": "node esbuild.config.js -w",
     "cypress:open": "cypress open",
