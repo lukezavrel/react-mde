@@ -3,6 +3,7 @@ logs
 *.log*
 .idea
 /lib/
+/cjs/
 node_modules
 /.vscode/
 ts-build/
